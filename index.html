@@ -10,7 +10,7 @@
 	<script type="text/javascript">
 		WebFont.load({
 			google: {
-				families: ["Varela:400"]
+				families: ["Montserrat:400"]
 			}
 		});
 	</script>
@@ -27,7 +27,8 @@
 </head>
 
 <body class="body">
-	<div class="section"><img src="images/skyline.svg" id="skylineImg" class="skylineimg" />
+	<div class="section">
+		<img src="images/skyline.svg" id="skylineImg" class="skylineimg" />
 		<div class="imagediv">
 			<div class="highcranediv"><img src="images/craneBackground.svg" class="highcraneimg" />
 				<div data-ix="new-interaction" class="redphonebgdiv">
@@ -87,12 +88,66 @@
 		</div>
 	</div>
 
+	<div class="section2">
+		<div class="contentwrapper">
+			<h1 class="bodyh1">Can't Wait?</h1>
+			<p class="p">Send me a message, I'll get back to you ;)</p>
+			<form id="contact-form" data-parsley-validate>
+				<div class="input-group">
+					<input type="text" name="name" data-parsley-required="true" placeholder="Name">
+				</div>
+				<div class="input-group">
+					<input type="text" name="phone" data-parsley-required="true" data-parsley-type="number" placeholder="Contact No.">
+				</div>
+				<div class="input-group">
+					<input type="email" name="email" data-parsley-required="true" data-parsley-type="email"  placeholder="Email">
+				</div>
+				<div class="input-group">
+					<textarea name="messsage" rows="5" placeholder="Message"></textarea>
+				</div>
+				<div class="input-group">
+				<button type="submit">Send</button>
+			</form>
+		</div>
+	</div>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.1/parsley.min.js" type="text/javascript"></script>
+	<script src="https://smtpjs.com/v2/smtp.js" type="text/javascript"></script>
 	<script src="js/main.js" type="text/javascript"></script>
 	<script>
 		window.addEventListener('scroll', function() {
 			var scrolled = window.scrollY
 			document.getElementById('skylineImg').style.marginBottom = ((0 - scrolled / 8) + 'px')
+		});
+		jQuery(document).ready(function($) {
+			/* Auto Capitalize Exhibit Type Start */
+      $('#contact-form input[name=name]').on('keypress', function(event) {
+        var $this = $(this),
+            val = $this.val(),
+            regex = /\b[a-z]/g;
+
+        val = val.toLowerCase().replace(regex, function(letter) {
+          return letter.toUpperCase();
+        });
+        $this.val(val);
+      });
+      /* Contact Form Submit */
+			$("#contact-form").submit(function(event) {
+				event.preventDefault();
+				var name = $("#contact-form input[name=name]").val(),
+						phone = $("#contact-form input[name=phone]").val(),
+						email = $("#contact-form input[name=email]").val(),
+						message = typeof $("#contact-form input[name=message]").val() != 'undefined' ? $("#contact-form input[name=message]").val() : "No Message";
+
+				Email.send("Alessandro's Website <alessandrodsouzawebsite@gmail.com>",
+				"dsouzaalessandro@gmail.com",
+				"New Enquiry - "+name,
+				"<p><b>Form Details Below:</b><p><b>Name</b>: "+name+"</p><p><b>Phone</b>: "+phone+"</p><p><b>Email</b>: "+email+"</p><p><b>Message</b>: "+message+"</p>",
+				"smtp.gmail.com",
+				"alessandrodsouzawebsite@gmail.com",
+				"884AkxThxrC");
+			});	
 		});
 	</script>
 </body>
