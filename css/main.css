@@ -416,7 +416,7 @@
 
 .bodyh1 {
   margin-top: 0px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   text-align: center;
 }
 
@@ -432,6 +432,7 @@
   font-size: 20px;
   line-height: 40px;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 html.w-mod-js *[data-ix="highcranelineinteraction"] {
@@ -542,7 +543,7 @@ html.w-mod-js *[data-ix="tankcranedivanimation"] {
 	  border: none;
 	}
 	button:hover{
-	  background: rgba(26, 117, 255, 0.75);
+	  background: #0e69a1;
 	  cursor: pointer;
 	}
 	.parsley-errors-list {
