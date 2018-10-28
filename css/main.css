@@ -542,9 +542,12 @@ html.w-mod-js *[data-ix="tankcranedivanimation"] {
 	  outline: none;
 	  border: none;
 	}
-	button:hover{
+	button:hover:not([disabled]){
 	  background: #0e69a1;
 	  cursor: pointer;
+	}
+	button[disabled]{
+	  cursor: not-allowed;
 	}
 	.parsley-errors-list {
 		text-align: center;
